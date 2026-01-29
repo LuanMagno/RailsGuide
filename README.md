@@ -47,8 +47,68 @@ Arquivos seguem o nome da classe/conceito mas sempre em snake_case
 
 -----
 ### Ruby Anottations
+#### POO
+
+Constructor
 ```ruby
-require #Semelhante ao import 
+class Person
+    def initialize(name, age) #Diferente do C# que o construtor tem o mesmo nome da classe,no Ruby é usado initialize
+        @name = name
+        @age = age
+    end
+end
+
+person = Person.new('Luan', 19)
+```
+Variables
+```ruby
+@@class_variable # 2@, valor compartilhado entre todas as instâncias de sua classe e pode ser acessada em qualquer lugar
+
+$global #Variável global
+
+@instance_variable #Usa apenas um @, o valor não é compartilhado entre todas as instâncias da classe
+```
+No C#, as variáveis de instância seriam o equivalente a declarar a variável na classe em si em vez de dentro de uma função, para evitar o excesso desnecessário de código existe o attr_acessor
+
+#### Instance
+```ruby
+class Dog
+    def name
+        @name #Acessa a variável, ela é criada na primeira instância
+    end
+
+    def name=(name)
+        @name = name  #Para atribuir o name 
+    end
+
+    def age
+        @age
+    end
+
+    def age(age) #Outro jeito de atribuir, não precisa do =
+        @age = age #Fazendo a mesma coisa para age
+    end
+end
+
+#A chamada muda dependendo de como foi declarada
+dog = Dog.new
+dog.name = "cachorro" #para name=(name)
+dog.age(5) #para age(age)
+```
+#### attr_acessor
+Tomar cuidado se a variável precisar de validação, não usar se o atributo não pode ser alterado depois. Não usar também quando vier de outros atributos
+
+```ruby
+class Dog
+    attr_accessor :name, :age #Cria os getters e setters para os atributos informados
+
+    attr_reader :name #Apenas para leitura
+    attr_writer :password #Apenas escrita
+end
+```
+
+```ruby
+require #Semelhante ao import (A ordem do require importa)
 require_relative '' #Usar o require relative pois é independente do arquivo que eu estou executando 
 gets.chomp = Console.ReadLine()
 
@@ -91,7 +151,6 @@ end
 
 array.map do |a| #Cria um novo array 
 array.map! #Substitui o conteúdo do próprio array
-
 ```
 -----
 ### Rails Anottations
