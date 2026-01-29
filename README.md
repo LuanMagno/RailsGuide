@@ -48,7 +48,121 @@ Arquivos seguem o nome da classe/conceito mas sempre em snake_case
 -----
 ### Ruby Anottations
 #### POO
+DUCK TYPING
 
+    "Se anda como um pato, grasna como um pato, então é um pato".
+
+O tipo do objeto não importa contanto que ele implemente os métodos necessários. Você não checa a classe e sim se o objeto responde aos métodos que queremos chamar
+
+```ruby
+class EmailNotificador
+  def enviar(mensagem)
+    puts "📧 Email: #{mensagem}"
+  end
+end
+
+class SlackNotificador
+  def enviar(mensagem)
+    puts "💬 Slack: #{mensagem}"
+  end
+end
+
+class SMSNotificador
+  def enviar(mensagem)
+    puts "📱 SMS: #{mensagem}"
+  end
+end
+
+class SistemaNotificacao
+  def initialize
+    @notificadores = []
+  end
+  
+  def adicionar_notificador(notificador)
+    @notificadores << notificador #Adiciona vetor de notificadores
+  end
+  
+  def notificar_todos(mensagem) #Mesmo sendo classes diferentes, todas possuem o método enviar igual portanto funciona em todas
+    @notificadores.each do |notificador| #Como se fosse um for each notificador in notificadores do {}
+      notificador.enviar(mensagem)  # Polimorfismo!
+    end
+  end
+end
+
+# Uso polimórfico
+sistema = SistemaNotificacao.new
+sistema.adicionar_notificador(EmailNotificador.new)
+sistema.adicionar_notificador(SlackNotificador.new)
+sistema.adicionar_notificador(SMSNotificador.new)
+
+sistema.notificar_todos("Sistema atualizado!")
+```
+
+Self
+```ruby
+#Semelhante a uma classe static no C#, não precisa instanciar uma variável 
+Class Produto
+    def self.categoria_padrao
+        "Geral"
+    end
+end
+
+Produto.categoria_padrao #Geral
+```
+
+MODULES
+-Não podem ser instanciados
+-Namespaces: organizar código
+-Mixins: compartilhar funcionalidades
+
+```ruby
+# Como Namespace
+module Financeiro
+  class Conta
+    def saldo
+      @saldo ||= 0 #||= é como se fosse um operador que checa a primeira afirmação e se ela não for verdade vai setar ela com o valor da segunda. (Se o @saldo não existir ele vai setar o saldo como 0)
+    end
+  end
+end
+
+conta = Financeiro::Conta.new
+# O sinal "::" Está falando para o Ruby procurar Conta no escopo Financeiro
+
+#:: Também pode ser usado para ignorar escopo
+class Car #Escopo global
+end
+
+module Vehicle
+  module Car #Como se fosse Vehicle::Car
+  end
+
+  my_global_car = ::Car.new # Ta referenciando o carro no escopo global, não no local(Dentro de veículo)
+end
+
+# Como Mixin
+module Auditavel
+  def log_acao(acao)
+    puts "[#{Time.now}] #{acao}"
+  end
+end
+
+class Usuario
+  include Auditavel
+  
+  def criar
+    log_acao("Usuário criado")
+  end
+end
+```
+-----
+Lambda - Podem ser usadas como argumentos de outras funções e partes do código.
+```ruby
+my_lambda = lambda { |x| x * 2 }
+# ou
+my_lambda = ->(x) { x * 2 }
+
+resultado = my_lambda.call(x) 
+```
 Constructor
 ```ruby
 class Person
@@ -58,7 +172,7 @@ class Person
     end
 end
 
-person = Person.new('Luan', 19)
+person = Person.new('Luan', 19)  #No ruby o . é usado especificamente para acessar métodos, não para acessar propriedades diretamente   
 ```
 Variables
 ```ruby
