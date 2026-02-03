@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get "/home", to: "pages#home" # Ambos levam para pages_controller mas dentro de cada def
   get "/about", to: "pages#about"
   # Defines the root path route ("/")

@@ -286,3 +286,8 @@ APP
   Views -> UI que vai ser vista pelos usuários
 
 -Ao adicionar uma página nova, primeiro adicionar a rota dela e depois o controller e model
+
+-----
+- Em rails, todo arquivo que começa com underscore "_navbar" é um partial
+- - Partials = Um pedaço reutilizável do view (navbar,footer,forms, etc)
+- 
