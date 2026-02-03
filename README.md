@@ -268,3 +268,21 @@ array.map! #Substitui o conteúdo do próprio array
 ```
 -----
 ### Rails Anottations
+#### Structure
+APP
+
+  Bin -> Rails scripts
+
+  Assets
+
+  Builds -> Onde o css e JS vai ser compilado
+
+  Controllers -> Lidam com todas as requisições, expôe o modelo para a web, processa parametros, renderiza templates, etc
+
+  Helpers -> Deixar o código limpo de qualquer regra de negócio ou código excessivo
+
+  Models -> Camada do banco de dados, geralmente representa 1 tabela em um banco de dados
+
+  Views -> UI que vai ser vista pelos usuários
+
+-Ao adicionar uma página nova, primeiro adicionar a rota dela e depois o controller e model
