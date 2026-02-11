@@ -290,4 +290,14 @@ APP
 -----
 - Em rails, todo arquivo que começa com underscore "_navbar" é um partial
 - - Partials = Um pedaço reutilizável do view (navbar,footer,forms, etc)
-- 
+- Helpers são basicamente módulos (Te permitem encapsular código e importar eles facilmente)
+ -----
+ ##### Hotwire - HTML Over the Wire
+O servidor manda o html pronto e não o json. Feito para usar o JavaScript apenas quando é necessário e deixar a maior parte da complexidade no servidor Rails
+
+ Composto por 3 partes:
+ - Turbo: Responsável pela navegação e atualização da tela sem recarregar tudo (reload) incluindo envio de forms, atualização de parte da tela autoamticamente etc
+ - Stimulus: Framework JavaScript mínimo usado pra adicionar comportamento ao HTML, lidando com interações do usuário e eventos do frontend de forma simples e organizada
+ - Strada: Integração entre partes web e apps nativos, permitindo uma comunicação com código nativo do mobile
+
+

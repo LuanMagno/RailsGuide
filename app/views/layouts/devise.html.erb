@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Rails Guide" %></title>
+    <title>SafePassApp Secure Authentication</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Rails Guide">
@@ -24,10 +24,19 @@
   </head>
 
   <body>
-    <%= render(partial: 'shared/navbar') %>
-    <%= render(partial: 'shared/flash') %>
-    <div class="container">
-      <%= yield %>
+    <div class="vh-100">
+      <%= render(partial: 'shared/flash') %>
+      <%= render(partial: 'shared/navbar') if account_page?%>
+        <div class="h-100 container d-flex flex-column justify-content-center align-items-center">
+          <% unless account_page?%>
+            <%= logo %>
+          <%end%>
+            <div class="card card--auth shadow-sm w-100">
+                <div class="card-body">
+                    <%= yield %>
+                </div>
+            </div>
+        </div>
     </div>
   </body>
 </html>
