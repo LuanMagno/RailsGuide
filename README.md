@@ -291,6 +291,7 @@ APP
 - Em rails, todo arquivo que começa com underscore "_navbar" é um partial
 - - Partials = Um pedaço reutilizável do view (navbar,footer,forms, etc)
 - Helpers são basicamente módulos (Te permitem encapsular código e importar eles facilmente)
+- Scaffold generator: Cria seu model controller view db:migration etc. Tudo relacionado ao CRUD
  -----
  ##### Hotwire - HTML Over the Wire
 O servidor manda o html pronto e não o json. Feito para usar o JavaScript apenas quando é necessário e deixar a maior parte da complexidade no servidor Rails
