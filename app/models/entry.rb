@@ -7,6 +7,14 @@ class Entry < ApplicationRecord # Validações ficam aqui
   encrypts :username, deterministic: true
   encrypts :password
 
+  scope :search_name, ->(name) {    # Basicamente é um atalho para uma consulta do active records
+    where("entries.name ILIKE ?", "%#{name}%") if name.present?
+  }
+
+  def self.search(name)
+    search_name(name).order(:name)
+  end
+
   private
 
   def url_must_be_valid
