@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   get "/about", to: "pages#about"
   # Defines the root path route ("/")
 
+  namespace :api do
+    namespace :v1 do
+      post :auth, to: "auth#create"
+      resources :entries
+    end
+  end
+
   resources :entries
   root "entries#index" # Define a primeira página a ser mostrada no projeto
 end
